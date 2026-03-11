@@ -209,6 +209,7 @@ This repository now includes [`render.yaml`](/e:/rabbit_ai/render.yaml) for a on
 3. Select this repository and keep the default root `render.yaml`.
 4. Render will create one web service that:
    - builds the React frontend,
+   - copies the built frontend into `backend/public`,
    - starts the Express backend,
    - serves the frontend from the same public URL.
 5. After deployment:

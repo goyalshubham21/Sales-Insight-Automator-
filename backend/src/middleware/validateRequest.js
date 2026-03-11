@@ -6,7 +6,8 @@ const uploadSchema = Joi.object({
 
 const emailSchema = Joi.object({
   email: Joi.string().email().required(),
-  summary: Joi.string().min(10).required()
+  summary: Joi.string().min(10).required(),
+  uploadId: Joi.string().optional()
 });
 
 export const validateUploadBody = (req, res, next) => {
