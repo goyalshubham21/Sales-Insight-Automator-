@@ -5,7 +5,7 @@ services:
     plan: free
     region: oregon
     rootDir: .
-    buildCommand: npm --prefix frontend install && npm --prefix frontend run build && node backend/scripts/prepare-static.js && npm --prefix backend install
+    buildCommand: npm --prefix frontend install --include=dev && npm --prefix frontend run build && node backend/scripts/prepare-static.js && npm --prefix backend install
     startCommand: npm --prefix backend start
     healthCheckPath: /api/health
     envVars:
@@ -15,8 +15,6 @@ services:
         value: true
       - key: CORS_ORIGIN
         value: "*"
-      - key: NODE_ENV
-        value: production
       - key: AI_PROVIDER
         value: gemini
       - key: AI_MODEL
