@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Segoe UI", sans-serif;
+}
+
+html {
+  font-family: var(--font-sans);
+}
+
+body {
+  margin: 0;
+}
+
+pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: "Cascadia Code", "Fira Code", monospace;
+}
+
+@keyframes success-pop {
+  0% {
+    transform: scale(0.72);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes success-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+@keyframes check-stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.success-hero {
+  isolation: isolate;
+}
+
+.success-glow {
+  position: absolute;
+  inset: auto -8rem -8rem auto;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgb(34 197 94 / 0.35) 0%, transparent 70%);
+  filter: blur(18px);
+  z-index: -1;
+}
+
+.success-check {
+  position: relative;
+  width: 5rem;
+  height: 5rem;
+  display: grid;
+  place-items: center;
+  animation: success-pop 0.7s ease-out both;
+}
+
+.success-check-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px solid rgb(74 222 128 / 0.45);
+  animation: success-ring 1.6s ease-out infinite;
+}
+
+.success-check-icon {
+  width: 5rem;
+  height: 5rem;
+}
+
+.success-check-circle {
+  stroke: rgb(74 222 128);
+  stroke-width: 2;
+  opacity: 0.4;
+}
+
+.success-check-path {
+  stroke: rgb(240 253 244);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: check-stroke 0.65s 0.3s ease forwards;
+}

@@ -1,0 +1,17 @@
+import mongoose from "mongoose";
+
+const connectDatabase = async () => {
+  const mongoUri = process.env.MONGODB_URI;
+
+  if (!mongoUri) {
+    throw new Error("MONGODB_URI is not configured");
+  }
+
+  await mongoose.connect(mongoUri, {
+    serverSelectionTimeoutMS: 5000
+  });
+};
+
+export const isDatabaseConnected = () => mongoose.connection.readyState === 1;
+
+export default connectDatabase;

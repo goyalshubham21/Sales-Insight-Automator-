@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: [backend, frontend]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        working-directory: ${{ matrix.app }}
+        run: npm install
+
+      - name: Run lint
+        working-directory: ${{ matrix.app }}
+        run: npm run lint
+
+      - name: Test build
+        working-directory: ${{ matrix.app }}
+        run: npm run build
+
+      - name: Verify backend start
+        if: matrix.app == 'backend'
+        working-directory: backend
+        env:
+          PORT: 5050
+          SKIP_DB: true
+        run: npm run test:start
